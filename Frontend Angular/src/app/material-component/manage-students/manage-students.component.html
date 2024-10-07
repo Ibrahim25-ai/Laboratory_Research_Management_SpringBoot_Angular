@@ -1,0 +1,103 @@
+<mat-card>
+  <b><span>Manage Students</span></b>
+  <button
+    mat-flat-button
+    color="primary"
+    class="float-right"
+    *ngIf="this.userRole === 'admin'"
+    (click)="handleAddAction()"
+  >
+    <mat-icon>add_circle</mat-icon>Add Student
+  </button>
+</mat-card>
+<hr />
+<mat-card>
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input />
+  </mat-form-field>
+</mat-card>
+<hr />
+
+<div class="responsive_table">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="cin">
+      <th mat-header-cell *matHeaderCellDef>CIN</th>
+      <td mat-cell *matCellDef="let element">{{ element.cin }}</td>
+    </ng-container>
+    <ng-container matColumnDef="prenom">
+      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.prenom }}</td>
+    </ng-container>
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+      <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cv">
+      <th mat-header-cell *matHeaderCellDef>CV</th>
+      <td mat-cell class="px-12" *matCellDef="let element">
+        <a [href]="'/assets/CVs/' + element.cv + '.pdf'" download>
+          <mat-icon color="primary">file_copy</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateInscription">
+      <th mat-header-cell *matHeaderCellDef>Inscription Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.dateInscription }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="diplome">
+      <th mat-header-cell *matHeaderCellDef>Diploma</th>
+      <td mat-cell *matCellDef="let element">{{ element.diplome }}</td>
+    </ng-container>
+    <ng-container matColumnDef="sujet">
+      <th mat-header-cell *matHeaderCellDef>Subject</th>
+      <td mat-cell *matCellDef="let element">{{ element.sujet }}</td>
+    </ng-container>
+    <ng-container matColumnDef="encadrant">
+      <th mat-header-cell *matHeaderCellDef>Supervisor</th>
+      <td mat-cell *matCellDef="let element">
+        {{
+          element.encadrant === null
+            ? "NULL"
+            : element.encadrant.prenom + " " + element.encadrant.nom
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element" class="action-link">
+        <button
+          mat-icon-button
+          color="primary"
+          matTooltip="Edit"
+          (click)="handleEditAction(element)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          matTooltip="Delete"
+          (click)="handleDeleteAction(element)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

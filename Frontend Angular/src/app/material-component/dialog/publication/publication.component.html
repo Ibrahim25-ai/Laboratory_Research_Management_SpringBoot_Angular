@@ -1,0 +1,193 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxfLayout="row">
+    <span>{{ dialogData.action }} Publication</span>
+    <span class="spacer"></span>
+    <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="publicationForm">
+    <div fxFlex fxLayout="column" *ngIf="this.dialogAction === 'Affect'">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Written By</mat-label>
+          <mat-select matInput formControlName="members" required>
+            <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">{{
+              teacher.nom + " " + teacher.prenom
+            }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              publicationForm.controls.members.touched &&
+              publicationForm.controls.members.invalid
+            "
+          >
+            <span *ngIf="publicationForm.controls.members.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex fxLayout="column" *ngIf="this.dialogAction === 'Disaffect'">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Written By</mat-label>
+          <mat-select matInput formControlName="members" required>
+            <mat-option
+              *ngFor="let teacher of this.dialogData.data.members"
+              [value]="teacher.id"
+              >{{ teacher.nom + " " + teacher.prenom }}</mat-option
+            >
+          </mat-select>
+          <mat-error
+            *ngIf="
+              publicationForm.controls.members.touched &&
+              publicationForm.controls.members.invalid
+            "
+          >
+            <span *ngIf="publicationForm.controls.members.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div
+      fxFlex
+      fxLayout="column"
+      *ngIf="this.dialogAction === 'Add' || this.dialogAction === 'Edit'"
+    >
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="titre" required />
+          <mat-error
+            *ngIf="
+              publicationForm.controls.titre.touched &&
+              publicationForm.controls.titre.invalid
+            "
+          >
+            <span *ngIf="publicationForm.controls.titre.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Type</mat-label>
+          <input matInput formControlName="type" required />
+          <mat-error
+            *ngIf="
+              publicationForm.controls.type.touched &&
+              publicationForm.controls.type.invalid
+            "
+          >
+            <span *ngIf="publicationForm.controls.type.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard">
+          <mat-label>Date of Publish</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            placeholder="DOB(DD/MM/YYYY)"
+            required
+            formControlName="date"
+            readonly
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error
+            *ngIf="
+              publicationForm.controls.date.touched &&
+              publicationForm.controls.date.invalid
+            "
+          >
+            <span *ngIf="publicationForm.controls.date.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Link</mat-label>
+          <input matInput formControlName="lien" required />
+          <mat-error
+            *ngIf="
+              publicationForm.controls.lien.touched &&
+              publicationForm.controls.lien.invalid
+            "
+          >
+            <span *ngIf="publicationForm.controls.lien.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>PDF Source</mat-label>
+          <input matInput formControlName="sourcepdf" required />
+          <mat-error
+            *ngIf="
+              publicationForm.controls.sourcepdf.touched &&
+              publicationForm.controls.sourcepdf.invalid
+            "
+          >
+            <span *ngIf="publicationForm.controls.sourcepdf.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap" *ngIf="this.dialogAction === 'Add'">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Written By</mat-label>
+          <mat-select matInput formControlName="members" required>
+            <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">{{
+              teacher.nom + " " + teacher.prenom
+            }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              publicationForm.controls.members.touched &&
+              publicationForm.controls.members.invalid
+            "
+          >
+            <span *ngIf="publicationForm.controls.members.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="handleSubmit()"
+    [disabled]="!(publicationForm.valid && publicationForm.dirty)"
+  >
+    <mat-icon>save</mat-icon> {{ action }}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    <mat-icon>cancel</mat-icon> Close
+  </button>
+</mat-dialog-actions>

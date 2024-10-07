@@ -1,0 +1,89 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxfLayout="row">
+    <span>{{ dialogData.action }} Event</span>
+    <span class="spacer"></span>
+    <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="eventForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="titre" required />
+          <mat-error
+            *ngIf="
+              eventForm.controls.titre.touched &&
+              eventForm.controls.titre.invalid
+            "
+          >
+            <span *ngIf="eventForm.controls.titre.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Adress</mat-label>
+          <input matInput formControlName="lieu" required />
+          <mat-error
+            *ngIf="
+              eventForm.controls.lieu.touched && eventForm.controls.lieu.invalid
+            "
+          >
+            <span *ngIf="eventForm.controls.lieu.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard">
+          <mat-label>Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            placeholder="DOB(DD/MM/YYYY)"
+            required
+            formControlName="date"
+            readonly
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error
+            *ngIf="
+              eventForm.controls.date.touched && eventForm.controls.date.invalid
+            "
+          >
+            <span *ngIf="eventForm.controls.date.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="handleSubmit()"
+    [disabled]="!(eventForm.valid && eventForm.dirty)"
+  >
+    <mat-icon>save</mat-icon> {{ action }}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    <mat-icon>cancel</mat-icon> Close
+  </button>
+</mat-dialog-actions>

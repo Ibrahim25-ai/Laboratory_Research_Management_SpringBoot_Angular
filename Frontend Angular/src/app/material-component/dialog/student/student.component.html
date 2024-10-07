@@ -1,0 +1,248 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxfLayout="row">
+    <span>{{ dialogData.action }} Student</span>
+    <span class="spacer"></span>
+    <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="studentForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>CIN</mat-label>
+          <input matInput formControlName="cin" required />
+          <mat-error
+            *ngIf="
+              studentForm.controls.cin.touched &&
+              studentForm.controls.cin.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.cin.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="prenom" required />
+          <mat-error
+            *ngIf="
+              studentForm.controls.prenom.touched &&
+              studentForm.controls.prenom.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.prenom.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="nom" required />
+          <mat-error
+            *ngIf="
+              studentForm.controls.nom.touched &&
+              studentForm.controls.nom.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.nom.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required />
+          <mat-error
+            *ngIf="
+              studentForm.controls.email.touched &&
+              studentForm.controls.email.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.email.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Password"
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            required
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+          <mat-error
+            *ngIf="
+              studentForm.controls.password.touched &&
+              studentForm.controls.password.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.password.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard">
+          <mat-label>Date of Birth</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            placeholder="DOB(DD/MM/YYYY)"
+            required
+            formControlName="date"
+            readonly
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error
+            *ngIf="
+              studentForm.controls.date.touched &&
+              studentForm.controls.date.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.date.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>CV</mat-label>
+          <input matInput formControlName="cv" required />
+          <mat-error
+            *ngIf="
+              studentForm.controls.cv.touched && studentForm.controls.cv.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.cv.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Diploma</mat-label>
+          <mat-select matInput formControlName="diplome" required>
+            <mat-option value="GI">GI</mat-option>
+            <mat-option value="GEM">GEM</mat-option>
+            <mat-option value="GE">GE</mat-option>
+            <mat-option value="GB">GB</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              studentForm.controls.diplome.touched &&
+              studentForm.controls.diplome.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.diplome.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Subject</mat-label>
+          <input matInput formControlName="sujet" required />
+          <mat-error
+            *ngIf="
+              studentForm.controls.sujet.touched &&
+              studentForm.controls.sujet.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.sujet.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard">
+          <mat-label>Inscription Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="DOB(DD/MM/YYYY)"
+            required
+            formControlName="dateInscription"
+            readonly
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              studentForm.controls.dateInscription.touched &&
+              studentForm.controls.dateInscription.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.dateInscription.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Superviser</mat-label>
+          <mat-select matInput formControlName="encadrant" required>
+            <mat-option *ngFor="let teacher of teachers" [value]="teacher">{{
+              teacher.nom + " " + teacher.prenom
+            }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              studentForm.controls.encadrant.touched &&
+              studentForm.controls.encadrant.invalid
+            "
+          >
+            <span *ngIf="studentForm.controls.encadrant.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="handleSubmit()"
+    [disabled]="!(studentForm.valid && studentForm.dirty)"
+  >
+    <mat-icon>save</mat-icon> {{ action }}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    <mat-icon>cancel</mat-icon> Close
+  </button>
+</mat-dialog-actions>

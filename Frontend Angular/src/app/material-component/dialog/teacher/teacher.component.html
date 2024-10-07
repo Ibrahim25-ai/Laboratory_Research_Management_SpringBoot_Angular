@@ -1,0 +1,208 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxfLayout="row">
+    <span>{{ dialogData.action }} Teacher</span>
+    <span class="spacer"></span>
+    <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="teacherForm">
+    <div fxFlex fxLayout="column">
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>CIN</mat-label>
+          <input matInput formControlName="cin" required />
+          <mat-error
+            *ngIf="
+              teacherForm.controls.cin.touched &&
+              teacherForm.controls.cin.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.cin.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="prenom" required />
+          <mat-error
+            *ngIf="
+              teacherForm.controls.prenom.touched &&
+              teacherForm.controls.prenom.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.prenom.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="nom" required />
+          <mat-error
+            *ngIf="
+              teacherForm.controls.nom.touched &&
+              teacherForm.controls.nom.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.nom.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required />
+          <mat-error
+            *ngIf="
+              teacherForm.controls.email.touched &&
+              teacherForm.controls.email.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.email.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Password"
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            required
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
+          <mat-error
+            *ngIf="
+              teacherForm.controls.password.touched &&
+              teacherForm.controls.password.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.password.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard">
+          <mat-label>Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            placeholder="DOB(DD/MM/YYYY)"
+            required
+            formControlName="date"
+            readonly
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error
+            *ngIf="
+              teacherForm.controls.date.touched &&
+              teacherForm.controls.date.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.date.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>CV</mat-label>
+          <input matInput formControlName="cv" required />
+          <mat-error
+            *ngIf="
+              teacherForm.controls.cv.touched && teacherForm.controls.cv.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.cv.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Grade</mat-label>
+          <mat-select matInput formControlName="grade" required>
+            <mat-option value="Assistant">Assistant</mat-option>
+            <mat-option value="Assistant professor"
+              >Assistant professor</mat-option
+            >
+            <mat-option value="Lecturer">Lecturer </mat-option>
+            <mat-option value="Higher education professor"
+              >Higher education professor</mat-option
+            >
+          </mat-select>
+          <mat-error
+            *ngIf="
+              teacherForm.controls.grade.touched &&
+              teacherForm.controls.grade.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.grade.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field appearance="standard" fxFlex>
+          <mat-label>Etablissement</mat-label>
+          <mat-select matInput formControlName="etablissement" required>
+            <mat-option value="ENIS">ENIS</mat-option>
+            <mat-option value="ENETCOM">ENETCOM</mat-option>
+            <mat-option value="FSS">FSS</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              teacherForm.controls.etablissement.touched &&
+              teacherForm.controls.etablissement.invalid
+            "
+          >
+            <span *ngIf="teacherForm.controls.etablissement.errors.required"
+              >This field is mandatory.</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="handleSubmit()"
+    [disabled]="!(teacherForm.valid && teacherForm.dirty)"
+  >
+    <mat-icon>save</mat-icon> {{ action }}
+  </button>
+  <button mat-raised-button color="warn" mat-dialog-close>
+    <mat-icon>cancel</mat-icon> Close
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Evenement" />
+        <module name="Outil" />
+        <module name="config_Service" />
+        <module name="Gateway" />
+        <module name="registry-service" />
+        <module name="Membre" />
+        <module name="Publication" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Evenement" options="-parameters" />
+      <module name="Gateway" options="-parameters" />
+      <module name="Membre" options="-parameters" />
+      <module name="Outil" options="-parameters" />
+      <module name="Publication" options="-parameters" />
+      <module name="config_Service" options="-parameters" />
+      <module name="registry-service" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,53 @@
+<body>
+  <mat-card>
+    <b><span>Dashboard</span></b>
+  </mat-card>
+  <br />
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Our Students Number</h2>
+          <h1 class="title">{{ data?.Students }}</h1>
+          <p>
+            <button class="button" [routerLink]="['/laboratory/student']">
+              View Students
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Our Teachers Number</h2>
+          <h1 class="title">{{ data?.Teachers }}</h1>
+          <p>
+            <button class="button" [routerLink]="['/laboratory/teacher']">
+              View Teachers
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="card">
+        <div class="container">
+          <h2 class="title">Our Publications Number</h2>
+          <h1 class="title">5</h1>
+          <p>
+            <button class="button" [routerLink]="['/laboratory/publication']">
+              View Publications
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div style="display: block">
+      <div width="300" height="300">
+        <canvas id="canvas">{{ chart }}</canvas>
+      </div>
+    </div>
+  </div>
+</body>
